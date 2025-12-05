@@ -58,6 +58,12 @@ struct node* deleteKey(struct node* root,int key){
 	}
 	return root;
 }
+struct node* search(struct node* root,int val){
+	if(root==NULL||root->val==val) return root;
+	else if(root->val>val) return root->right=search(root->right,val);
+	else if(root->val<val) return root->left=search(root->left,val);
+	return root;
+}
 int main(){
 	struct node* root=NULL;
 	root=insert(root,1);
