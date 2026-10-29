@@ -1,0 +1,32 @@
+import java.io.*;
+import java.net.*;
+
+public class tcpClient {
+    public static void main(String[] args) throws IOException {
+        Socket s = new Socket("localhost", 5000);
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(s.getInputStream()));
+        PrintWriter out = new PrintWriter(
+                s.getOutputStream(), true);
+        out.println("Hello Server");
+//        System.out.println(in.readLine());
+        s.close();
+    }
+}
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+public class tcpServer {
+    public static void main(String[] args) throws IOException {
+        ServerSocket ss=new ServerSocket(5000);
+        Socket s=ss.accept();
+        BufferedReader in =new BufferedReader(new InputStreamReader(s.getInputStream()));
+        PrintWriter out = new PrintWriter(s.getOutputStream(),true);
+        String msg=in.readLine();
+        System.out.println(msg);
+        out.println(msg);
+        s.close();
+        ss.close();
+    }
+}
