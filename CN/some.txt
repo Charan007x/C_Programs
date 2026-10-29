@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class some {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int dist[][]=new int[n][n];
+        int cost[][]=new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                cost[i][j]=sc.nextInt();
+                dist[i][j]=cost[i][j];
+            }
+        }
+        for(int k=0;k<n;k++){
+            for(int i=0;i<n;i++){
+                for(int j=0;j<n;j++){
+                    if(dist[i][k]+dist[k][j]<dist[i][j]){
+                        dist[i][j]=dist[i][k]+dist[k][j];
+                    }
+                }
+            }
+        }
+        System.out.println("\nRouting Table");
+        for(int i=0;i<n;i++){
+            System.out.println("Route #"+i);
+            for(int j=0;j<n;j++){
+                System.out.println("To Router"+j+" "+cost[i][j]);
+            }
+        }
+    }
+}
+
+
+
+Enter number of routers: 3
+Enter cost matrix (use 999 for infinity):
+0 2 7
+2 0 3
+7 3 0
